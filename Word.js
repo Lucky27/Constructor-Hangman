@@ -30,13 +30,13 @@ var Word = function(string){
 	this.checkGuess = function(guess){
 		var success = false
 		for(i = 0; i < this.arrLetters.length; i++){
-		var hold = this.arrLetters[i].compare(guess)
+		var hold = this.arrLetters[i].compare(guess);
 		
 		  if(hold){
-		  	success = true
+		  	success = true;
 		  }
 		}
-		return success
+		return success;
 	}
 
 	this.gameOver = function (){

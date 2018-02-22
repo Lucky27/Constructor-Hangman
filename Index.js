@@ -56,6 +56,7 @@ inquirer.prompt([
 		wins++
 		console.log("bingo!!")
 		// return;
+		startOver()
 	  }
 	}
 	else{
@@ -65,6 +66,7 @@ inquirer.prompt([
 			losses ++
 			// GuessLetter()
 			// return
+			startOver()
 
 	}
 		}
@@ -73,3 +75,15 @@ inquirer.prompt([
 });
 }
 GuessLetter()
+
+function startOver(){
+  success = false;
+  // letterArray = [];
+  guessLeft = 5;
+  newWord = new Word(personName);
+  newWord.displayValue();
+  newWord.wordLetters();
+}
+
+
+
