@@ -1,8 +1,8 @@
-var letterPicked = require("./Letter.js");
+var LetterPicked = require("./Letter.js");
 
 var Word = function(string){
 	this.value = string;
-	this.arrLetters = []
+	this.arrLetters = [];
 	// display value method.
 	this.displayValue = function(){
 		var displayLetter = ""
@@ -20,7 +20,7 @@ var Word = function(string){
 
 		for (var i = 0; i < letterString.length; i++){
 			
-			var newLetter = new letterPicked(letterString[i])
+			var newLetter = new LetterPicked(letterString[i])
 
 			this.arrLetters.push(newLetter)
 
@@ -32,7 +32,19 @@ var Word = function(string){
 			this.arrLetters[i].compare(guess)
 		}
 	}
+
+	this.gameOver = function (){
+		var solved = true;
+		for (var i = 0; i < this.arrLetters.length; i++){
+		  
+		  if (!this.arrLetters[i].guessed){
+		  	solved = false;
+		  }
+		} return solved;
+	}
 }
+
+
 
 // var newWord = new Word("bottle")
 

@@ -1,42 +1,61 @@
 var inquirer = require("inquirer");
-var letterPicked = require("./Letter.js");
+var LetterPicked = require("./Letter.js");
 var Word = require("./Word.js");
 
+var letterArray = [];
+var wins = 0;
+var losses = 0;
+var guessLeft = 5;
 
-var personArr = ["Jose", "Jack", "David", "Javier", "Carlo", "Robinson"];
+//function that shows the values of wins, losses, guess left, empty array and the word to be guess.
+function show(){
+	console.log("Wins " + wins);
+	console.log("Losses " + losses);
+	console.log("Guesses left " + guessLeft);
+	console.log(newWord.displayValue());
+	console.log(letterArray);
+}
+
+var personArr = ["jose", "jack", "david", "javier", "carlo", "robinson"];
 var random = Math.floor(Math.random() * personArr.length);
 var personName = personArr[random]
 	// console.log(personName)
+
 var newWord = new Word(personName);
 newWord.wordLetters()
-newWord.checkGuess("o")
-newWord.checkGuess("a")
-newWord.checkGuess("e")
-console.log(newWord.displayValue())
+newWord.checkGuess();
+newWord.checkGuess();
+newWord.checkGuess("a");
+newWord.displayValue()
 // displayValue()
 // wordLetters()
 
 // console.log()
 
+//calls the show() function then run the prompt for user input.
 var GuessLetter = function(){
-
+show();
 inquirer.prompt([
 {
 	type: "input",
-	message: "Pick a letter.",
-	name: "letter"
+	name: "letter",
+	message: "Pick a letter."
 },
-	// displayValue()
-
-]).then(function(){
+]).then(function(response){
+	var guess = response.letter[0];
 	// console.log(displayValue())
+	if(letterArray.includes(guess) || !guess){
+		return GuessLetter()
+	}
+	newWord.checkGuess(guess)
+	letterArray.push(guess);
 	GuessLetter()
-	// if(){
-     
-	// }
-	// else{
 
-	// }
+	if (newWord.gameOver()){
+		wins++
+	}
+
+	
 });
 }
 GuessLetter()

@@ -1,7 +1,8 @@
-var letterPicked = function(displayLetter){
+var LetterPicked = function(displayLetter) {
+
 	this.displayLetter = displayLetter;
 	this.guessed = false;
-
+//this function identify if 
 	this.letterShow = function(){
 		if (this.guessed === true){
 			return displayLetter
@@ -22,7 +23,7 @@ var letterPicked = function(displayLetter){
 	}
 }; 
 
-module.exports = letterPicked
+module.exports = LetterPicked
 
 
 
