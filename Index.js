@@ -1,5 +1,5 @@
 var inquirer = require("inquirer");
-var LetterPicked = require("./Letter.js");
+// var LetterPicked = require("./Letter.js");
 var Word = require("./Word.js");
 
 var letterArray = [];
@@ -23,9 +23,9 @@ var personName = personArr[random]
 
 var newWord = new Word(personName);
 newWord.wordLetters()
-newWord.checkGuess();
-newWord.checkGuess();
-newWord.checkGuess("a");
+// newWord.checkGuess();
+// newWord.checkGuess();
+// newWord.checkGuess("a");
 newWord.displayValue()
 // displayValue()
 // wordLetters()
@@ -47,15 +47,29 @@ inquirer.prompt([
 	if(letterArray.includes(guess) || !guess){
 		return GuessLetter()
 	}
-	newWord.checkGuess(guess)
-	letterArray.push(guess);
-	GuessLetter()
-
-	if (newWord.gameOver()){
-		wins++
-	}
-
 	
+	letterArray.push(guess);
+	var corrGuess = newWord.checkGuess(guess)
+	// GuessLetter()
+	if(corrGuess){
+	  if (newWord.gameOver()){
+		wins++
+		console.log("bingo!!")
+		// return;
+	  }
+	}
+	else{
+		guessLeft --;
+		if(guessLeft === 0){
+			console.log("game over");
+			losses ++
+			// GuessLetter()
+			// return
+
+	}
+		}
+	newWord.checkGuess(guess)
+	GuessLetter()
 });
 }
 GuessLetter()

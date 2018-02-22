@@ -12,7 +12,7 @@ var Word = function(string){
 		}
 		return displayLetter
 	}
-
+//split the word by letters, 
 	this.wordLetters = function(){
 
 		var letterString = this.value.split("")
@@ -28,9 +28,15 @@ var Word = function(string){
 	}
 
 	this.checkGuess = function(guess){
+		var success = false
 		for(i = 0; i < this.arrLetters.length; i++){
-			this.arrLetters[i].compare(guess)
+		var hold = this.arrLetters[i].compare(guess)
+		
+		  if(hold){
+		  	success = true
+		  }
 		}
+		return success
 	}
 
 	this.gameOver = function (){
@@ -40,8 +46,11 @@ var Word = function(string){
 		  if (!this.arrLetters[i].guessed){
 		  	solved = false;
 		  }
-		} return solved;
+		} 
+		return solved;
 	}
+
+
 }
 
 
